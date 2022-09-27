@@ -38,3 +38,4 @@ jobs:
       with:
         name: CCExtractorTester suite
         path: CCExtractorTester\bin\Release\artifact
+ 
