@@ -470,10 +470,12 @@ namespace CCExtractorTester.Analyzers
                         }
                         try
                         {
+                            string correctFile = Path.Combine(processor.Config.TemporaryFolder, kvp.Key);
+                            File.Copy(Path.Combine(processor.Config.ResultFolder, kvp.Key), correctFile, true);
                             comparer.CompareAndAddToResult(new CompareData()
                             {
                                 ProducedFile = kvp.Value,
-                                CorrectFile = Path.Combine(processor.Config.ResultFolder, kvp.Key),
+                                CorrectFile = correctFile,
                                 Command = testEntry.Command,
                                 RunTime = rd.Runtime,
                                 ExitCode = rd.ExitCode,
@@ -481,6 +483,7 @@ namespace CCExtractorTester.Analyzers
                                 TestID = testEntry.Id,
                                 TestFileID = testFileID
                             });
+                            File.Delete(correctFile);
                         }
                         catch (Exception e)
                         {
