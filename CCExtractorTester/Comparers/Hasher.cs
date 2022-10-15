@@ -19,7 +19,7 @@ namespace CCExtractorTester.Comparers
         {
             if (File.Exists(fileLocation))
             {
-                using (var stream = File.OpenRead(fileLocation))
+                using (FileStream stream = File.Open(fileLocation, FileMode.Open))
                 {
                     using (var algo = HashAlgorithm.Create(hashAlgorithm))
                     {
